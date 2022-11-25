@@ -20,11 +20,11 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
+
     private String firstName;
     private String lastName;
     private LocalDate birthDate;
     private Gender gender;
     private String phoneNumber;
     private String email;
-
 }
