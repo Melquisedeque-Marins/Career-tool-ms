@@ -24,4 +24,10 @@ public class UserController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newUser.getUserId()).toUri();
         return ResponseEntity.created(uri).build();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity findById(@PathVariable Long id) {
+        User user =service.findById(id);
+        return ResponseEntity.ok().body(user);
+    }
 }
