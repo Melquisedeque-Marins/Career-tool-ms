@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -30,4 +31,12 @@ public class UserController {
         User user =service.findById(id);
         return ResponseEntity.ok().body(user);
     }
+
+    @GetMapping
+    public ResponseEntity findAll() {
+        List<User> users =service.findAll();
+        return ResponseEntity.ok().body(users);
+    }
+
+
 }
