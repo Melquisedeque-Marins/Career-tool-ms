@@ -1,5 +1,6 @@
 package com.melck.carrertoolms.resources;
 
+import com.melck.carrertoolms.dtos.UserDTO;
 import com.melck.carrertoolms.entities.User;
 import com.melck.carrertoolms.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -20,8 +22,8 @@ public class UserController {
     private UserService service;
 
     @PostMapping
-    public ResponseEntity<User> insert(@RequestBody User user) {
-        User newUser = service.insert(user);
+    public ResponseEntity<User> insert(@Valid @RequestBody UserDTO dto) {
+        User newUser = service.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newUser.getUserId()).toUri();
         return ResponseEntity.created(uri).build();
     }
