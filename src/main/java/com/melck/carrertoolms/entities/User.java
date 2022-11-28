@@ -26,6 +26,8 @@ public class User {
     private String lastName;
 
     private LocalDate birthDate;
+
+    @Enumerated(EnumType.STRING)
     private Gender gender;
     private String phoneNumber;
     private String email;
