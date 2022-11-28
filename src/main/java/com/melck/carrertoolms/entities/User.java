@@ -1,5 +1,6 @@
 package com.melck.carrertoolms.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.melck.carrertoolms.enums.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,8 +24,10 @@ public class User {
 
     private String firstName;
     private String lastName;
+
     private LocalDate birthDate;
     private Gender gender;
     private String phoneNumber;
     private String email;
+
 }
