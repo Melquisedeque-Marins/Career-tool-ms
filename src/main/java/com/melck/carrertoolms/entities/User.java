@@ -1,6 +1,5 @@
 package com.melck.carrertoolms.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.melck.carrertoolms.enums.Gender;
 import lombok.AllArgsConstructor;
@@ -36,7 +35,7 @@ public class User {
     private String email;
 
     @JsonIgnore
-    @OneToMany
-    private List<Skills> skills = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    private List<Resume> resumes = new ArrayList<>();
 
 }
