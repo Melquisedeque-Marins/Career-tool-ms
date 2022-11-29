@@ -1,6 +1,7 @@
 package com.melck.carrertoolms.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.melck.carrertoolms.enums.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +10,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -31,5 +34,9 @@ public class User {
     private Gender gender;
     private String phoneNumber;
     private String email;
+
+    @JsonIgnore
+    @OneToMany
+    private List<Skills> skills = new ArrayList<>();
 
 }
