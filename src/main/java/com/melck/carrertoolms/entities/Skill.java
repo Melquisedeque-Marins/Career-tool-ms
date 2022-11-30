@@ -21,6 +21,9 @@ public class Skill {
     private String name;
     private int score;
 
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "skill_id")
+//    private Resume resume;
 
 
 }

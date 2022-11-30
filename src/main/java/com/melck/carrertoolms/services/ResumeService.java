@@ -24,6 +24,7 @@ public class ResumeService {
     public Resume insert(ResumeDTO dto) {
         User user = userService.findById(dto.getUserId());
         Resume resume = new Resume();
+        resume.setSkills(dto.getSkills());
         resume.setUser(user);
         repository.save(resume);
         return resume;

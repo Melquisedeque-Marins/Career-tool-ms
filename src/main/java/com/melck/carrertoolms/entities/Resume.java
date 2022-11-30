@@ -1,13 +1,13 @@
 package com.melck.carrertoolms.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Getter
 @Setter
@@ -25,7 +25,9 @@ public class Resume {
    @JoinColumn(name = "user_id")
    private User user;
 
+   private HashMap<String, String> skills;
+//   @JsonIgnore
 //   @OneToMany(mappedBy = "resume")
-//   private List<Experience> experiences = new ArrayList<>();
+//   private Set<Skill> skills = new HashSet<>();
 
 }
