@@ -1,5 +1,6 @@
 package com.melck.carrertoolms.dtos;
 
+import com.melck.carrertoolms.entities.Resume;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,4 +18,9 @@ public class ResumeDTO {
 
     @NotNull
     private Long userId;
+
+    public ResumeDTO(Resume resume) {
+        this.id = resume.getId();
+        this.userId = resume.getUser().getUserId();
+    }
 }
