@@ -22,8 +22,8 @@ public class UserController {
     private UserService service;
 
     @PostMapping
-    public ResponseEntity<User> insert(@Valid @RequestBody UserDTO dto) {
-        User newUser = service.insert(dto);
+    public ResponseEntity<User> insert(@Valid @RequestBody User user) {
+        User newUser = service.insert(user);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newUser.getUserId()).toUri();
         return ResponseEntity.created(uri).build();
     }

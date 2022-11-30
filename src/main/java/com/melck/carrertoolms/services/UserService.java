@@ -19,9 +19,9 @@ public class UserService {
     private UserRepository repository;
 
     @Transactional
-    public User insert(UserDTO dto) {
-        User user = new User();
-        BeanUtils.copyProperties(dto, user);
+    public User insert(User user) {
+//        User user = new User();
+//        BeanUtils.copyProperties(dto, user);
         return repository.save(user);
     }
 

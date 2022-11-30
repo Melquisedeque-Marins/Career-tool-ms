@@ -25,6 +25,7 @@ public class Resume {
    @JoinColumn(name = "user_id")
    private User user;
 
-
+//   @OneToMany(mappedBy = "resume")
+//   private List<Experience> experiences = new ArrayList<>();
 
 }

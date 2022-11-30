@@ -25,4 +25,8 @@ public class Experience {
 
     @Column(columnDefinition = "TEXT")
     private String brief;
+
+    @ManyToOne
+    @JoinColumn(name = "resume_id")
+    private Resume resume;
 }
