@@ -4,6 +4,12 @@ spring:
     username: sa
     password:
 
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://idp.example.com/issuer
+
   h2:
     console:
       enabled: true
@@ -11,3 +17,4 @@ spring:
 
   jpa:
     open-in-view: false
+
