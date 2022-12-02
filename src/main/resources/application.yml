@@ -8,17 +8,20 @@ spring:
     open-in-view: false
 
 
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: https://idp.example.com/issuer
-
   h2:
     console:
       enabled: true
       path: /h2-console
 
+security:
+  oauth2:
+    client:
+      client-id: ${CLIENT_ID:career-tool}
+      client-secret: ${CLIENT_SECRET:career-tool}
+
+jwt:
+  secret: ${JWT_SECRET:career-tool}
+  duration: ${JWT_DURATION:3600}
 
 
 
