@@ -3,6 +3,7 @@ package com.melck.carrertoolms.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -28,25 +29,31 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private UserDetailsService userDetailsService;
+
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated");
+        security.tokenKeyAccess("permitAll()")
+                .checkTokenAccess("isAuthenticated()");
     }
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
                 .withClient("CareerTool")
-                .secret(passwordEncoder.encode("CareerTool123"))
-                .scopes("read", "white")
+                .secret(passwordEncoder.encode("CareerTool"))
+                .scopes("read", "write")
                 .authorizedGrantTypes("password")
                 .accessTokenValiditySeconds(3600);
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.authenticationManager(authenticationManager)
+        endpoints
+                .authenticationManager(authenticationManager)
                 .tokenStore(tokenStore)
-                .accessTokenConverter(accessTokenConverter);
+                .accessTokenConverter(accessTokenConverter)
+                .userDetailsService(userDetailsService);
     }
 }
