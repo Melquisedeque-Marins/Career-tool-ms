@@ -26,6 +26,6 @@ public class ResumeDTO {
 
     public ResumeDTO(Resume resume) {
         this.id = resume.getId();
-        this.userId = resume.getUser().getUserId();
+        this.userId = resume.getUser().getId();
     }
 }

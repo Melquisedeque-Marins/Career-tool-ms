@@ -32,10 +32,11 @@ public class UserDTO {
     private Gender gender;
     private String phoneNumber;
     private String email;
+    private String password;
 
 
     public UserDTO(User user) {
-        this.userId = user.getUserId();
+        this.userId = user.getId();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.birthDate = user.getBirthDate();

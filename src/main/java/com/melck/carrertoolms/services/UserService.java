@@ -1,7 +1,9 @@
 package com.melck.carrertoolms.services;
 
 import com.melck.carrertoolms.dtos.UserDTO;
+import com.melck.carrertoolms.entities.Role;
 import com.melck.carrertoolms.entities.User;
+import com.melck.carrertoolms.repositories.RoleRepository;
 import com.melck.carrertoolms.repositories.UserRepository;
 import com.melck.carrertoolms.services.exceptions.ObjectNotFoundException;
 import org.slf4j.Logger;
@@ -24,16 +26,24 @@ public class UserService implements UserDetailsService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
     private static Logger logger = LoggerFactory.getLogger(UserService.class);
     @Autowired
     private UserRepository repository;
 
     @Transactional
-    public User insert(User user) {
-//        User user = new User();
-//        BeanUtils.copyProperties(dto, user);
+    public UserDTO insert(UserDTO dto) {
+        User user = new User();
+        BeanUtils.copyProperties(dto, user);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return repository.save(user);
+        Role role = roleRepository.getOne(2L);
+        if (role != null) {
+        user.getRoles().add(role);
+        }
+        User newUser = repository.save(user);
+        return new UserDTO(newUser);
     }
 
     @Transactional(readOnly = true)
@@ -42,7 +52,6 @@ public class UserService implements UserDetailsService {
         return user.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
     }
 
-    @Transactional(readOnly = true)
     public List<User> findAll() {
         return repository.findAll();
     }

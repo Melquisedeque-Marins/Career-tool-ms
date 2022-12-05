@@ -22,14 +22,14 @@ public class UserController {
     private UserService service;
 
     @PostMapping
-    public ResponseEntity<User> insert(@Valid @RequestBody User user) {
-        User newUser = service.insert(user);
+    public ResponseEntity<UserDTO> insert(@Valid @RequestBody UserDTO dto) {
+        UserDTO newUser = service.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newUser.getUserId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity findById(@PathVariable Long id) {
+    public ResponseEntity<User> findById(@PathVariable Long id) {
         User user =service.findById(id);
         return ResponseEntity.ok().body(user);
     }

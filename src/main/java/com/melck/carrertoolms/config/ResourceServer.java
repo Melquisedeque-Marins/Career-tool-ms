@@ -26,7 +26,7 @@ public class ResourceServer extends ResourceServerConfigurerAdapter {
         resources.tokenStore(tokenStore);
     }
 
-    private static final String PUBLIC[] = {"/oauth/token/**","/users", "/h2-console/**"};
+    private static final String PUBLIC[] = {"/oauth/token/**", "/h2-console/**"};
 
     private static final String CLIENT_OR_ADMIN[] = {"/users/**"};
 

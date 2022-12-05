@@ -3,11 +3,6 @@ spring:
     active: ${APP_PROFILE:test}
 
 
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-
 security:
   oauth2:
     client:
