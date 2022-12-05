@@ -1,6 +1,7 @@
 package com.melck.carrertoolms.resources.exceptions;
 
 
+import com.melck.carrertoolms.services.exceptions.ObjectIsAlreadyInUseException;
 import com.melck.carrertoolms.services.exceptions.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +33,12 @@ public class ControllerExceptionHandler {
         for (FieldError x : e.getBindingResult().getFieldErrors()){
             error.addErrors(x.getField(), x.getDefaultMessage());
         }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
+    @ExceptionHandler(ObjectIsAlreadyInUseException.class)
+    public ResponseEntity<StandardError> objectIsAlreadyException(ObjectIsAlreadyInUseException e, HttpServletRequest request){
+        StandardError error = new StandardError(now, HttpStatus.BAD_REQUEST.value(), e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 }

@@ -5,6 +5,7 @@ import com.melck.carrertoolms.entities.Role;
 import com.melck.carrertoolms.entities.User;
 import com.melck.carrertoolms.repositories.RoleRepository;
 import com.melck.carrertoolms.repositories.UserRepository;
+import com.melck.carrertoolms.services.exceptions.ObjectIsAlreadyInUseException;
 import com.melck.carrertoolms.services.exceptions.ObjectNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +37,11 @@ public class UserService implements UserDetailsService {
 
     @Transactional
     public UserDTO insert(UserDTO dto) {
+
+        User obj = repository.findByEmail(dto.getEmail());
+        if (obj != null) {
+            throw new ObjectIsAlreadyInUseException("email já em uso");
+        }
         User user = new User();
         BeanUtils.copyProperties(dto, user);
         user.setPassword(passwordEncoder.encode(user.getPassword()));

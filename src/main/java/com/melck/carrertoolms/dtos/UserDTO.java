@@ -8,9 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @Getter
@@ -29,9 +27,16 @@ public class UserDTO {
     @JsonFormat(pattern = "dd/MM/yyyy")
     @Past(message = "Insira uma data de nascimento valida")
     private LocalDate birthDate;
+    @NotNull(message = "Este campo é obrigatório")
     private Gender gender;
+    @NotBlank(message = "Este campo é obrigatório")
     private String phoneNumber;
+
+    @NotBlank(message = "Este campo é obrigatório")
+    @Email
     private String email;
+    @NotBlank(message = "Este campo é obrigatório")
+    @Size(min = 8, max = 8, message = "A senha deve conter 8 digitos")
     private String password;
 
 
