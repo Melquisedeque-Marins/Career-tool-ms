@@ -43,5 +43,6 @@ public class UserDTO {
         this.gender = user.getGender();
         this.phoneNumber = user.getPhoneNumber();
         this.email = user.getEmail();
+        this.password = user.getPassword();
     }
 }
