@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -52,8 +53,9 @@ public class UserService implements UserDetailsService {
         return user.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
     }
 
-    public List<User> findAll() {
-        return repository.findAll();
+    public List<UserDTO> findAll() {
+        List<User> users = repository.findAll();
+        return users.stream().map( user -> new UserDTO(user)).collect(Collectors.toList());
     }
 
     public void delete(Long id) {

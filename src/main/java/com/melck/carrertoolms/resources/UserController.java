@@ -25,7 +25,7 @@ public class UserController {
     public ResponseEntity<UserDTO> insert(@Valid @RequestBody UserDTO dto) {
         UserDTO newUser = service.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newUser.getUserId()).toUri();
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.created(uri).body(newUser);
     }
 
     @GetMapping("/{id}")
@@ -36,7 +36,7 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity findAll() {
-        List<User> users =service.findAll();
+        List<UserDTO> users =service.findAll();
         return ResponseEntity.ok().body(users);
     }
 
