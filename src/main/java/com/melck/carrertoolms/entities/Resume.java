@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 
 @Getter
@@ -15,7 +16,7 @@ import java.util.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "tb_resume")
-public class Resume {
+public class Resume implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,9 +26,7 @@ public class Resume {
    @JoinColumn(name = "user_id")
    private User user;
 
-   private HashMap<String, String> skills;
-//   @JsonIgnore
-//   @OneToMany(mappedBy = "resume")
-//   private Set<Skill> skills = new HashSet<>();
+   private HashMap<String, String> skills = new HashMap<>();
+
 
 }
