@@ -1,8 +1,10 @@
 package com.melck.carrertoolms.resources.exceptions;
 
 
+import com.melck.carrertoolms.services.exceptions.ForbiddenException;
 import com.melck.carrertoolms.services.exceptions.ObjectIsAlreadyInUseException;
 import com.melck.carrertoolms.services.exceptions.ObjectNotFoundException;
+import com.melck.carrertoolms.services.exceptions.UnauthorizedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -40,5 +42,16 @@ public class ControllerExceptionHandler {
     public ResponseEntity<StandardError> objectIsAlreadyException(ObjectIsAlreadyInUseException e, HttpServletRequest request){
         StandardError error = new StandardError(now, HttpStatus.BAD_REQUEST.value(), e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<OauthCustomError> forbidden(ForbiddenException e, HttpServletRequest request){
+        OauthCustomError error = new OauthCustomError("Forbidden", e.getMessage());
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error);
+    }
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<OauthCustomError> unauthorized(UnauthorizedException e, HttpServletRequest request){
+        OauthCustomError error = new OauthCustomError("Unauthorized", e.getMessage());
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
     }
 }
