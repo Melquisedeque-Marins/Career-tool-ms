@@ -6,7 +6,6 @@ import com.melck.carrertoolms.entities.User;
 import com.melck.carrertoolms.repositories.ResumeRepository;
 import com.melck.carrertoolms.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
