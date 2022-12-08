@@ -28,4 +28,5 @@ public class Resume implements Serializable {
 
    private HashMap<String, String> skills = new HashMap<>();
 
+
 }
