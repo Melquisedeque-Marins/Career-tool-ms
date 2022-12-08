@@ -22,11 +22,10 @@ public class Resume implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-   @ManyToOne
-   @JoinColumn(name = "user_id")
-   private User user;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-   private HashMap<String, String> skills = new HashMap<>();
-
-
+    @OneToMany(mappedBy = "resume")
+    private Set<Skill> skills = new HashSet<>();
 }

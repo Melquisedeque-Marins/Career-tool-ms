@@ -20,4 +20,8 @@ public class Skill {
     private Long id;
     private String skillName;
     private int score;
+
+    @ManyToOne
+    @JoinColumn(name = "resume_id")
+    private Resume resume;
 }

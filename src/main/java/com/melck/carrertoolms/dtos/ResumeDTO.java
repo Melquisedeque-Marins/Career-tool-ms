@@ -20,8 +20,6 @@ public class ResumeDTO implements Serializable {
     @NotNull
     private Long userId;
 
-    private HashMap<String, String> skills;
-
-
+    private Long skillId;
 
 }
