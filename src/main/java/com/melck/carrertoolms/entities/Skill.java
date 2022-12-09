@@ -21,7 +21,7 @@ public class Skill {
     private String skillName;
     private int score;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "resume_id")
     private Resume resume;
 }

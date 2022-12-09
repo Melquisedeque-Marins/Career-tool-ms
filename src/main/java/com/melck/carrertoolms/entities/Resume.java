@@ -26,6 +26,7 @@ public class Resume implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "resume")
     private Set<Skill> skills = new HashSet<>();
 }

@@ -1,5 +1,6 @@
 package com.melck.carrertoolms.dtos;
 
+import com.melck.carrertoolms.entities.Skill;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,8 @@ import lombok.Setter;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -21,5 +24,7 @@ public class ResumeDTO implements Serializable {
     private Long userId;
 
     private Long skillId;
+
+    private Set<Skill> skills = new HashSet<>();
 
 }

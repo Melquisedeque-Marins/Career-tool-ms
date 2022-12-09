@@ -9,9 +9,11 @@ import com.melck.carrertoolms.repositories.SkillRepository;
 import com.melck.carrertoolms.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class ResumeService {
@@ -25,12 +27,23 @@ public class ResumeService {
     @Autowired
     private UserService userService;
 
+    @Transactional
     public Resume insert(ResumeDTO dto) {
         User user = userService.findById(dto.getUserId());
-        Skill skill = skillsService.findById(dto.getSkillId());
         Resume resume = new Resume();
-        resume.setUser(user);
+
+        if (dto.getSkillId() != null) {
+            Skill skill = skillsService.findById(dto.getSkillId());
         resume.getSkills().add(skill);
+        }
+        if (!dto.getSkills().isEmpty()) {
+            Set<Skill> skills = dto.getSkills();
+            for (Skill s : skills ) {
+                skillsService.insert(s);
+                resume.getSkills().add(s);
+            }
+        }
+        resume.setUser(user);
         repository.save(resume);
         return resume;
     }
