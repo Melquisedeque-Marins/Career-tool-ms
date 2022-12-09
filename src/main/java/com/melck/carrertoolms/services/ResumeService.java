@@ -37,8 +37,7 @@ public class ResumeService {
         resume.getSkills().add(skill);
         }
         if (!dto.getSkills().isEmpty()) {
-            Set<Skill> skills = dto.getSkills();
-            for (Skill s : skills ) {
+            for (Skill s : dto.getSkills() ) {
                 skillsService.insert(s);
                 resume.getSkills().add(s);
             }
