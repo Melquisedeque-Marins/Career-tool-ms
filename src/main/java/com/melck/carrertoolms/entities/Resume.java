@@ -31,4 +31,7 @@ public class Resume implements Serializable {
             joinColumns = @JoinColumn(name = "resume_id"),
             inverseJoinColumns = @JoinColumn(name = "skill_id"))
     private Set<Skill> skills = new HashSet<>();
+
+    @OneToMany(mappedBy = "resume")
+    private Set<Experience> experiences = new HashSet<>();
 }
