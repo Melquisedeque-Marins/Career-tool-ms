@@ -1,6 +1,7 @@
 package com.melck.carrertoolms.services;
 
 import com.melck.carrertoolms.dtos.ResumeDTO;
+import com.melck.carrertoolms.entities.Experience;
 import com.melck.carrertoolms.entities.Resume;
 import com.melck.carrertoolms.entities.Skill;
 import com.melck.carrertoolms.entities.User;
@@ -27,6 +28,9 @@ public class ResumeService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ExperienceService experienceService;
+
     @Transactional
     public Resume insert(ResumeDTO dto) {
         User user = userService.findById(dto.getUserId());
@@ -40,6 +44,16 @@ public class ResumeService {
             for (Skill s : dto.getSkills() ) {
                 skillsService.insert(s);
                 resume.getSkills().add(s);
+            }
+        }
+        if (dto.getExperienceId() != null) {
+            Experience exp = experienceService.findById(dto.getExperienceId());
+        resume.getExperiences().add(exp);
+        }
+        if (!dto.getExperiences().isEmpty()) {
+            for (Experience e : dto.getExperiences() ) {
+                experienceService.insert(e);
+                resume.getExperiences().add(e);
             }
         }
         resume.setUser(user);

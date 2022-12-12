@@ -1,5 +1,6 @@
 package com.melck.carrertoolms.dtos;
 
+import com.melck.carrertoolms.entities.Experience;
 import com.melck.carrertoolms.entities.Skill;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +26,10 @@ public class ResumeDTO implements Serializable {
 
     private Long skillId;
 
+    private Long experienceId;
+
     private Set<Skill> skills = new HashSet<>();
+
+    private Set<Experience> experiences = new HashSet<>();
 
 }
