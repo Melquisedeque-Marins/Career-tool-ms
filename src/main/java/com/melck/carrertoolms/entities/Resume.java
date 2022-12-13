@@ -32,6 +32,9 @@ public class Resume implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "skill_id"))
     private Set<Skill> skills = new HashSet<>();
 
-    @OneToMany(mappedBy = "resume")
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "tb_resume_experiences",
+            joinColumns = @JoinColumn(name = "resume_id"),
+            inverseJoinColumns = @JoinColumn(name = "experience_id"))
     private Set<Experience> experiences = new HashSet<>();
 }

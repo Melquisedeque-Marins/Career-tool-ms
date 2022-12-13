@@ -1,5 +1,6 @@
 package com.melck.carrertoolms.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -28,7 +31,7 @@ public class Experience {
     @Column(columnDefinition = "TEXT")
     private String brief;
 
-    @ManyToOne
-    @JoinColumn(name = "experience_id")
-    private Resume resume;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "experiences")
+    private Set<Resume> Resumes = new HashSet<>();
 }

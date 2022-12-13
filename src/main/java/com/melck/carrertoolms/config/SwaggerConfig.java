@@ -18,7 +18,7 @@ public class SwaggerConfig {
     public Docket getDocket() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.melck.doctor.ms"))
+                .apis(RequestHandlerSelectors.basePackage("com.melck.carrertoolms"))
                 .build()
                 .apiInfo(metaData());
 
@@ -26,7 +26,7 @@ public class SwaggerConfig {
 
     private ApiInfo metaData() {
         return new ApiInfoBuilder()
-                .title("Doctor Label API")
+                .title("Career Tool API")
                 .description("Spring Boot REST API for Career tool")
                 .version("1.0.0")
                 .license("Apache License Version 2.0")

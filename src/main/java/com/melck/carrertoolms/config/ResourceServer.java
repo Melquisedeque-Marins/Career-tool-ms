@@ -41,6 +41,10 @@ public class ResourceServer extends ResourceServerConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(PUBLIC).permitAll()
                 .antMatchers("/users/**").permitAll()
+                .antMatchers( "/v3/api-docs/**",
+                        "/swagger-ui/**",
+                        "/v2/api-docs/**",
+                        "/swagger-resources/**").permitAll()
                 .antMatchers(HttpMethod.GET,"/doctors/**").hasAnyRole("CLIENT", "ADMIN")
                 .antMatchers("/schedules/**").hasAnyRole("CLIENT", "ADMIN")
                 .antMatchers(ADMIN).hasRole("ADMIN")
