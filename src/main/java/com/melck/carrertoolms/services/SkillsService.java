@@ -28,4 +28,12 @@ public class SkillsService {
         Optional<Skill> skill = repository.findById(id);
         return skill.orElseThrow(() -> new ObjectNotFoundException("Não foi possivel encontrar este curriculo"));
     }
+
+    public void delete(Long id) {
+        Skill skill = findById(id);
+        repository.delete(skill);
+    }
+
+
+
 }

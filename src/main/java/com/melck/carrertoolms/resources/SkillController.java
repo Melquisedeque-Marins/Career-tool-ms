@@ -29,4 +29,10 @@ public class SkillController {
         List<Skill> skills = service.findAll();
         return ResponseEntity.ok().body(skills);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

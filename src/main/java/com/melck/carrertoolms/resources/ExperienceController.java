@@ -35,4 +35,10 @@ public class ExperienceController {
         List<Experience> experiences = service.findAll();
         return ResponseEntity.ok().body(experiences);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

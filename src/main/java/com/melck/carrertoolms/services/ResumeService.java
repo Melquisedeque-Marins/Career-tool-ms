@@ -35,6 +35,7 @@ public class ResumeService {
     public Resume insert(ResumeDTO dto) {
         User user = userService.findById(dto.getUserId());
         Resume resume = new Resume();
+        resume.setVersion(1L);
 
         if (dto.getSkillId() != null) {
             Skill skill = skillsService.findById(dto.getSkillId());

@@ -46,7 +46,7 @@ public class Resume implements Serializable {
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant updatedAt;
 
-
+    @Column
     private Long version;
 
     @PrePersist
@@ -57,11 +57,6 @@ public class Resume implements Serializable {
     @PreUpdate
     public void preUpdate(){
         updatedAt = Instant.now();
-    }
-
-    @PreUpdate
-    public void preVersion(){
-        version = getVersion() + 1;
     }
 
 }
