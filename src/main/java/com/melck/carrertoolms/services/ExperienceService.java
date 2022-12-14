@@ -37,4 +37,10 @@ public class ExperienceService {
         Experience experience = findById(id);
         repository.delete(experience);
     }
+
+    public Experience update(Long id, Experience dto) {
+        Experience experience = findById(id);
+        dto.setId(experience.getId());
+        return repository.save(dto);
+    }
 }
