@@ -17,7 +17,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "tb_languages")
-public class Languages {
+public class Language {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
