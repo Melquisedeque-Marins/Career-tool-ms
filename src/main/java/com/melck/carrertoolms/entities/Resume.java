@@ -39,6 +39,12 @@ public class Resume implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "experience_id"))
     private Set<Experience> experiences = new HashSet<>();
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "tb_resume_languages",
+            joinColumns = @JoinColumn(name = "resume_id"),
+            inverseJoinColumns = @JoinColumn(name = "language_id"))
+    private Set<Experience> languages = new HashSet<>();
+
 
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant createdAt;
