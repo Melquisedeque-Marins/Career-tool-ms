@@ -1,10 +1,7 @@
 package com.melck.carrertoolms.services;
 
 import com.melck.carrertoolms.dtos.ResumeDTO;
-import com.melck.carrertoolms.entities.Experience;
-import com.melck.carrertoolms.entities.Resume;
-import com.melck.carrertoolms.entities.Skill;
-import com.melck.carrertoolms.entities.User;
+import com.melck.carrertoolms.entities.*;
 import com.melck.carrertoolms.repositories.ResumeRepository;
 import com.melck.carrertoolms.repositories.SkillRepository;
 import com.melck.carrertoolms.services.exceptions.ObjectNotFoundException;
@@ -31,6 +28,9 @@ public class ResumeService {
     @Autowired
     private ExperienceService experienceService;
 
+    @Autowired
+    private LanguageService languageService;
+
     @Transactional
     public Resume insert(ResumeDTO dto) {
         User user = userService.findById(dto.getUserId());
@@ -55,6 +55,12 @@ public class ResumeService {
             for (Experience e : dto.getExperiences() ) {
                 experienceService.insert(e);
                 resume.getExperiences().add(e);
+            }
+        }
+        if (!dto.getLanguages().isEmpty()) {
+            for (Language l : dto.getLanguages() ) {
+                languageService.insert(l);
+                resume.getLanguages().add(l);
             }
         }
         resume.setUser(user);

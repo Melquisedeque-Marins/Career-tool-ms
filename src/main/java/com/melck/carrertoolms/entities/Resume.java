@@ -43,7 +43,7 @@ public class Resume implements Serializable {
     @JoinTable(name = "tb_resume_languages",
             joinColumns = @JoinColumn(name = "resume_id"),
             inverseJoinColumns = @JoinColumn(name = "language_id"))
-    private Set<Experience> languages = new HashSet<>();
+    private Set<Language> languages = new HashSet<>();
 
 
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
