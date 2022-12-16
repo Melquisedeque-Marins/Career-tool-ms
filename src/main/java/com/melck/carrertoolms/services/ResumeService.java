@@ -6,6 +6,7 @@ import com.melck.carrertoolms.repositories.ResumeRepository;
 import com.melck.carrertoolms.repositories.SkillRepository;
 import com.melck.carrertoolms.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -64,6 +65,8 @@ public class ResumeService {
         return resume;
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @Transactional
     public List<Resume> findAll() {
         return repository.findAll();
     }

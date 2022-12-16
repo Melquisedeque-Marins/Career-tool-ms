@@ -39,6 +39,8 @@ public class UserDTO {
     @Size(min = 8, max = 8, message = "A senha deve conter 8 digitos")
     private String password;
 
+    private int age;
+
 
     public UserDTO(User user) {
         this.userId = user.getId();

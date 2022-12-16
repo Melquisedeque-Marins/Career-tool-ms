@@ -2,6 +2,7 @@ package com.melck.carrertoolms.dtos;
 
 import com.melck.carrertoolms.entities.Experience;
 import com.melck.carrertoolms.entities.Language;
+import com.melck.carrertoolms.entities.Resume;
 import com.melck.carrertoolms.entities.Skill;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,4 +30,7 @@ public class ResumeDTO implements Serializable {
 
     private Set<Language> languages = new HashSet<>();
 
+    public ResumeDTO(Resume resume) {
+
+    }
 }
