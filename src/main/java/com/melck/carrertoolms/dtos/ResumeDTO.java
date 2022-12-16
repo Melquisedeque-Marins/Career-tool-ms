@@ -23,13 +23,6 @@ public class ResumeDTO implements Serializable {
 
     private Long id;
 
-    @NotNull
-    private Long userId;
-
-    private Long skillId;
-
-    private Long experienceId;
-
     private Set<Skill> skills = new HashSet<>();
 
     private Set<Experience> experiences = new HashSet<>();

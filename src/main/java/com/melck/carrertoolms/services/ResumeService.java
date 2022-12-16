@@ -31,25 +31,21 @@ public class ResumeService {
     @Autowired
     private LanguageService languageService;
 
+    @Autowired
+    private AuthService authService;
+
     @Transactional
     public Resume insert(ResumeDTO dto) {
-        User user = userService.findById(dto.getUserId());
         Resume resume = new Resume();
         resume.setVersion(1L);
 
-        if (dto.getSkillId() != null) {
-            Skill skill = skillsService.findById(dto.getSkillId());
-        resume.getSkills().add(skill);
-        }
+        User user = authService.authenticated();
+
         if (!dto.getSkills().isEmpty()) {
             for (Skill s : dto.getSkills() ) {
                 skillsService.insert(s);
                 resume.getSkills().add(s);
             }
-        }
-        if (dto.getExperienceId() != null) {
-            Experience exp = experienceService.findById(dto.getExperienceId());
-        resume.getExperiences().add(exp);
         }
         if (!dto.getExperiences().isEmpty()) {
             for (Experience e : dto.getExperiences() ) {
